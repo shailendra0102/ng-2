@@ -11,13 +11,15 @@ export class AppComponent {
 
   constructor(){
 
-    this.formData = {
-      "name":"Shailendra",
-      "email":"sprajjobid@gmail.com",
-      "userName":"Shailendra0102",
-      "password":"Password0102",
-      "cnfrmPassword":"Password0102"
-    };
+    this.formData = <IRegisterForm>{};
+
+    // this.formData = {
+    //   "name":"Shailendra",
+    //   "email":"sprajjobid@gmail.com",
+    //   "userName":"Shailendra0102",
+    //   "password":"Password0102",
+    //   "cnfrmPassword":"Password0102"
+    // };
 
   };
 

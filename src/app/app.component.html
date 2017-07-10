@@ -2,16 +2,24 @@
 			<div class="row main">
 				<div class="main-login main-center">
 				<h5>Sign up once and watch any of our free demos.</h5>
-        <div>{{formData | json}}</div>
+        		<div>Component Model: {{formData | json}}</div>
+				<div><hr/></div>
+				<div>Form Model: {{registerForm.value | json}}</div>
 					<form #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Your Name</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<span class="input-group-addon">
+										<i class="fa fa-user fa" aria-hidden="true"></i>
+									</span>
 									<input type="text" class="form-control" name="name" id="name"  
-                  					placeholder="Enter your Name" ngModel/>
+                  					placeholder="Enter your Name" [(ngModel)]="formData.name" required/>
 				    			</div>
+								<div *ngIf="registerForm.controls.name.dirty 
+											&& registerForm.controls.name.invalid">
+									<span style="color:red"> Please enter your name</span> 
+								</div>	
 							</div>
 						</div>
 
@@ -24,6 +32,10 @@
                   					placeholder="Enter your Email" [(ngModel)]="formData.email" required/>
 								</div>
 							</div>
+							<div *ngIf="registerForm.controls.email.dirty 
+											&& registerForm.controls.email.invalid">
+									<span style="color:red"> Please enter your email address</span> 
+								</div>
 						</div>
 
 						<div class="form-group">
@@ -35,6 +47,10 @@
                   					placeholder="Enter your Username" [(ngModel)]="formData.userName" required/>
 								</div>
 							</div>
+							<div *ngIf="registerForm.controls.username.dirty 
+											&& registerForm.controls.username.invalid">
+									<span style="color:red"> Please enter your username</span> 
+								</div>
 						</div>
 
 						<div class="form-group">
@@ -46,6 +62,10 @@
                   					placeholder="Enter your Password" [(ngModel)]="formData.password" required/>
 								</div>
 							</div>
+							<div *ngIf="registerForm.controls.password.dirty 
+											&& registerForm.controls.password.invalid">
+									<span style="color:red"> Please enter your password</span> 
+								</div>
 						</div>
 
 						<div class="form-group">
@@ -57,13 +77,18 @@
                   					placeholder="Confirm your Password" [(ngModel)]="formData.cnfrmPassword" required/>
 								</div>
 							</div>
+							<div *ngIf="registerForm.controls.confirm.dirty 
+											&& registerForm.controls.confirm.invalid">
+									<span style="color:red"> Please enter password again</span> 
+								</div>
 						</div>
 
-						<div class="form-group ">
-							<button id="button" type="submit"    class="btn btn-primary btn-lg btn-block login-button" >Register</button>
+						<div class="form-group">
+							<button id="button" type="submit" [disabled]="registerForm.invalid"
+							 class="btn btn-primary btn-lg btn-block login-button">
+								Register
+							</button>
 						</div>
-						{{registerForm}}
-						
 					</form>
 				</div>
 			</div>
